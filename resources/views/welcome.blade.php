@@ -57,7 +57,7 @@
             @if (Route::has('login'))
                 <nav class="-mx-3 flex flex-1 justify-end">
                     @auth
-                        <a class="btn-getstarted flex-md-shrink-0" href="{{ url('/dashboard') }}">Dashboard</a>
+                        <a class="btn-getstarted flex-md-shrink-0" href="{{ route('admin.home') }}">Dashboard</a>
                     @else
                         @if (Route::has('register'))
                             <a class="btn-register" href="{{ route('register') }}">Register</a>
