@@ -34,7 +34,8 @@ class HomeController extends Controller
     }
     public function adminHome(): View
     {
-        return view('admin.pelamar.index');
+        $lamaran = Lamaran::with('user', 'lowongan')->get();
+        return view('admin.pelamar.index', compact('lamaran'));
     }
     public function adminLowongan(): View
     {

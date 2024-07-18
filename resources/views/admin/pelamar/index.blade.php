@@ -150,14 +150,59 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Tanggal Pinjam</th>
-                                            <th>Tanggal Kembali</th>
-                                            <th>ID Buku</th>
-                                            <th>Nama Mahasiswa</th>
+                                            <th>Nama Pelamar</th>
                                             <th>Status</th>
+                                            <th>CV</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
+                                    @forelse ($lamaran as $lamar)
+                                        <tr>
+                                            <td>{{ $lamar->id }}</td>
+                                            <td>{{ $lamar->user->name }}</td>
+                                            <td>
+                                                @if ($lamar->status == 1)
+                                                    Belum diverifikasi
+                                                @elseif ($lamar->status == 2)
+                                                    Tolak
+                                                @elseif ($lamar->status == 3)
+                                                    Terima
+                                                @else
+                                                    Belum diverifikasi
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <a href="{{ asset('storage/cv/cv_pelamar.pdf') }}"
+                                                    target="_blank">Lihat CV</a>
+                                            </td>
+                                            <td>
+                                                @if ($lamar->status == 3)
+                                                <span class="badge bg-success">Diterima</span>
+                                                @else
+                                                    <form action="{{ route('admin.lamaran.verifikasi', $lamar->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <select name="status" id="status"
+                                                            class="form-select form-select-sm">
+                                                            <option value="1"
+                                                                @if ($lamar->status == 1) selected @endif>Belum
+                                                                Diverifikasi
+                                                            <option value="2"
+                                                                @if ($lamar->status == 2) selected @endif>Tolak
+                                                            </option>
+                                                            <option value="3"
+                                                                @if ($lamar->status == 3) selected @endif>Terima
+                                                            </option>
+                                                        </select>
+                                                        <button type="submit"
+                                                            class="btn btn-primary btn-sm">Simpan</button>
+                                                    </form>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @empty
+                                    @endforelse
                                     <tbody>
                                     </tbody>
                                 </table>
@@ -167,26 +212,25 @@
                 </section>
                 <!-- Minimal jQuery Datatable end -->
                 <!-- Modal -->
-                
+
 
 
                 <!-- Modal -->
 
 
 
-
-                <!-- Modal untuk menampilkan foto -->
-                <div class="modal fade" id="fotoModal" tabindex="-1" aria-labelledby="fotoModalLabel"
+                <div class="modal fade" id="cvModal" tabindex="-1" aria-labelledby="cvModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="fotoModalLabel">Foto Resep</h5>
+                                <h5 class="modal-title" id="cvModalLabel">CV Pelamar</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <img id="fotoModalImg" src="" class="img-fluid" alt="Foto Resep">
+                                <iframe id="cvModalContent" src="" style="width: 100%; height: 600px;"
+                                    frameborder="0"></iframe>
                             </div>
                         </div>
                     </div>

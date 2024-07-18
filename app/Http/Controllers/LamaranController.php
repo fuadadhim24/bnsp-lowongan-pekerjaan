@@ -38,4 +38,13 @@ class LamaranController extends Controller
         return redirect()->route('home')
                          ->with('success', 'Lamaran telah berhasil dikirim.');
     }
+
+    public function verifikasiLamaran(Request $request, $id){
+        $lamaran = Lamaran::findOrFail($id);
+        $lamaran->update([
+            'status' => $request->status,
+        ]);
+        return redirect()->route('admin.home');
+    }
+
 }

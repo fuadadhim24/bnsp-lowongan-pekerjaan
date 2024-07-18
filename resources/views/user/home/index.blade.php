@@ -279,7 +279,17 @@
                                                     <td>{{ $lmn->created_at }}</td>
                                                     <td>{{ $lmn->lowongan->nama }}</td>
                                                     <td>{{ $lmn->lowongan->perusahaan }}</td>
-                                                    <td>{{ $lmn->status }}</td>
+                                                    <td>
+                                                        @if ($lmn->status == 1)
+                                                            Belum diverifikasi
+                                                        @elseif ($lmn->status == 2)
+                                                            Tolak
+                                                        @elseif ($lmn->status == 3)
+                                                            Terima
+                                                        @else
+                                                            Belum diverifikasi
+                                                        @endif
+                                                    </td>
                                                 </tr>
                                             @empty
                                             @endforelse
