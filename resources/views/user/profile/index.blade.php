@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Lowongan - Youth Id.</title>
+    <title>Profile Anda - Youth Id.</title>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ asset('assets/img/perpus.svg') }}">
@@ -89,7 +89,7 @@
                         </li> --}}
 
                         <li class="sidebar-item  ">
-                            <a href="{{ route('user.profile') }}" class='sidebar-link'>
+                            <a href="#" class='sidebar-link'>
                                 <i class="bi bi-person-fill"></i>
                                 <span>Profile</span>
                             </a>
@@ -115,99 +115,45 @@
             </header>
 
             <div class="page-heading">
-                <div class="page-title">
-                    <div class="row">
-                        <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>Daftar Lowongan</h3>
-                            <p class="text-subtitle text-muted">Kelola Lowongan dengan mudah menggunakan tabel
-                                interaktif.
-                            </p>
 
-
-                        </div>
-                        <div class="col-12 col-md-6 order-md-2 order-first">
-                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Daftar Lowongan</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recent Posts Section -->
-                <section id="recent-posts" class="recent-posts section">
-
+                <section id="user-profile" class="section">
                     <div class="container">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h3>Update User Data</h3>
+                                        <form method="POST"
+                                            action="{{ route('user.profile.update', Auth::user()->id) }}">
+                                            @csrf
+                                            @method('PUT')
 
-                        <div class="row gy-5">
-                            @forelse ($lowongan as $lwn)
-                                <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="card-header">
-                                                <div class="post-img position-relative overflow-hidden">
-                                                    <span class="post-date">
-                                                        @if ($lwn->jenis == 1)
-                                                            Full Time
-                                                        @else
-                                                            Part Time
-                                                        @endif
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="post-content d-flex flex-column">
-
-                                                    <!-- Judul pekerjaan -->
-                                                    <h3 class="post-title">{{ $lwn->nama }}</h3>
-
-                                                    <!-- Informasi pekerjaan -->
-                                                    <ul class="job-info list-unstyled">
-                                                        <li><strong>Salary:</strong> {{ $lwn->gaji }}</li>
-                                                        <li><strong>Category:</strong> {{ $lwn->kategori }}</li>
-                                                        <li><strong>Company:</strong> {{ $lwn->perusahaan }}</li>
-                                                        <li><strong>Status:</strong>
-                                                            @if ($lwn->status == 1)
-                                                                <span class="badge bg-primary">Tersedia</span>
-                                                            @elseif ($lwn->status == 2)
-                                                                <span class="badge bg-warning">Terbatas</span>
-                                                            @elseif ($lwn->status == 3)
-                                                                <span class="badge bg-success">Terpenuhi</span>
-                                                            @endif
-                                                        </li>
-                                                        <li><strong>Location:</strong> {{ $lwn->alamat }}</li>
-                                                    </ul>
-
-                                                    <hr>
-
-                                                    <!-- Link untuk membaca lebih lanjut -->
-                                                    <a href="#" class="readmore stretched-link"
-                                                        data-bs-toggle="modal" data-bs-target="#confirmationModal"
-                                                        onclick="setJobId('{{ $lwn->id }}')">
-                                                        <span>Read More</span><i class="bi bi-arrow-right"></i>
-                                                    </a>
-
-
-                                                </div>
+                                            <div class="mb-3">
+                                                <label for="name" class="form-label">Name</label>
+                                                <input type="text" class="form-control" id="name"
+                                                    name="name" value="{{ Auth::user()->name }}" required>
                                             </div>
 
-                                        </div>
+                                            <div class="mb-3">
+                                                <label for="email" class="form-label">Email address</label>
+                                                <input type="email" class="form-control" id="email"
+                                                    name="email" value="{{ Auth::user()->email }}" required>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="password" class="form-label">Password</label>
+                                                <input type="password" class="form-control" id="password"
+                                                    name="password">
+                                            </div>
+
+                                            <button type="submit" class="btn btn-primary">Update</button>
+                                        </form>
                                     </div>
-                                </div><!-- End post item -->
-                            @empty
-                            @endforelse
+                                </div>
+                            </div>
                         </div>
-
                     </div>
-
-                </section><!-- /Recent Posts Section -->
-
-                <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal"
-                    data-bs-target="#historyModal">
-                    Lihat Status Lamaran
-                </button>
+                </section>
 
 
 
@@ -250,52 +196,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Modal Riwayat -->
-                <div class="modal fade" id="historyModal" tabindex="-1" aria-labelledby="historyModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="confirmationModalLabel">Riwayat Pengajuan Lamaran
-                                </h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="table-responsive datatable-minimal">
-                                    <table class="table" id="table2">
-                                        <thead>
-                                            <tr>
-                                                <th>Tanggal Lamaran</th>
-                                                <th>Nama Lowongan</th>
-                                                <th>Perusahaan</th>
-                                                <th>Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @forelse ($lamaran as $lmn)
-                                                <tr>
-                                                    <td>{{ $lmn->created_at }}</td>
-                                                    <td>{{ $lmn->lowongan->nama }}</td>
-                                                    <td>{{ $lmn->lowongan->perusahaan }}</td>
-                                                    <td>{{ $lmn->status }}</td>
-                                                </tr>
-                                            @empty
-                                            @endforelse
-                                            <!-- Data dari AJAX akan ditampilkan di sini -->
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary"
-                                    data-bs-dismiss="modal">Tutup</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
 
@@ -328,40 +228,6 @@
     <script src="{{ asset('assets') }}/extensions/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
     <script src="{{ asset('assets') }}/static/js/pages/datatables.js"></script>
 
-
-    <script>
-        function viewFoto(namaFoto) {
-            var fotoUrl = '{{ asset('storage/foto-Lowongan') }}/' + namaFoto;
-            $('#fotoModalImg').attr('src', fotoUrl);
-            $('#fotoModal').modal('show');
-        }
-
-        // Function to delete a class
-        function deleteClass(id) {
-            if (confirm('Are you sure you want to delete this data?')) {
-                $.ajax({
-                    url: '/Lowongan/' + id,
-                    type: 'DELETE',
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    success: function(response) {
-                        alert('Data deleted successfully!');
-                        $('#table2').DataTable().ajax.reload();
-                    },
-                    error: function(xhr, status, error) {
-                        alert('Error occurred: ' + error);
-                    }
-                });
-            }
-        }
-    </script>
-
-    <script>
-        function setJobId(jobId) {
-            document.getElementById('id_lowongan').value = jobId;
-        }
-    </script>
 
 
 </body>

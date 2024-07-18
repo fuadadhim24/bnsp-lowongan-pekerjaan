@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LamaranController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WelcomeController;
 
 Route::get('/', [WelcomeController::class, 'index']
@@ -19,7 +20,9 @@ All Normal Users Routes List
 Route::middleware(['auth', 'user-access:user'])->group(function () {
   
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::post('/home', [LamaranController::class, 'store'])->name('user.lamar.store');
+    Route::post('/home/store', [LamaranController::class, 'store'])->name('user.lamar.store');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('user.profile');
+    Route::put('/profile/update/{id}', [ProfileController::class, 'update'])->name('user.profile.update');
 });
   
 /*------------------------------------------

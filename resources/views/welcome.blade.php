@@ -84,10 +84,10 @@
                             Youth Id. Cari lowongan pekerjaan berdasarkan minat atau perusahaan yang cocok dengan
                             profile kamu</p>
                         <div class="d-flex flex-column flex-md-row" data-aos="fade-up" data-aos-delay="200">
-                            <a href="#about" class="btn-get-started">Pinjam Sekarang</a>
-                            <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ"
+                            <a href="/login" class="btn-get-started">Apply Sekarang</a>
+                            <a href="#recent-posts"
                                 class="glightbox btn-watch-video d-flex align-items-center justify-content-center ms-0 ms-md-4 mt-4 mt-md-0">Lihat
-                                semua buku</a>
+                                Lowongan</a>
                         </div>
                     </div>
                     <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out">
@@ -221,7 +221,7 @@
                                     <hr>
 
                                     <!-- Link untuk membaca lebih lanjut -->
-                                    <a href="#" class="readmore stretched-link"><span>Read More</span><i
+                                    <a href="/login" class="readmore stretched-link"><span>Read More</span><i
                                             class="bi bi-arrow-right"></i></a>
 
                                 </div>
