@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('gaji');
             $table->string('kategori');
             $table->string('perusahaan');
+            $table->string('alamat');
             $table->integer('jenis');
             $table->integer('status');
             $table->timestamps();
@@ -28,6 +29,7 @@ return new class extends Migration
                 'gaji' => '$60,000 - $80,000 per year',
                 'kategori' => 'Information Technology',
                 'perusahaan' => 'Tech Solutions Inc.',
+                'alamat' => 'Jember, Indonesia.',
                 'jenis' => 1, 
                 'status' => 1, 
                 'created_at' => now(),
@@ -38,6 +40,7 @@ return new class extends Migration
                 'gaji' => '$70,000 - $90,000 per year',
                 'kategori' => 'Marketing',
                 'perusahaan' => 'Marketing Pro Agency',
+                'alamat' => 'Surabaya Center Mall',
                 'jenis' => 2, 
                 'status' => 1, 
                 'created_at' => now(),

@@ -155,6 +155,7 @@
                                             <th>Perusahaan</th>
                                             <th>Jenis</th>
                                             <th>Status</th>
+                                            <th>Alamat</th>
                                             <th>Created At</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -167,7 +168,13 @@
                                                 <td>{{ $lwn->gaji }}</td>
                                                 <td>{{ $lwn->kategori }}</td>
                                                 <td>{{ $lwn->perusahaan }}</td>
-                                                <td>{{ $lwn->jenis }}</td>
+                                                <td>
+                                                    @if ($lwn->jenis == 1)
+                                                        Full Time
+                                                    @else
+                                                        Part Time
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     @if ($lwn->status == 1)
                                                         <span class="badge bg-primary">Tersedia</span>
@@ -177,6 +184,7 @@
                                                         <span class="badge bg-success">Terpenuhi</span>
                                                     @endif
                                                 </td>
+                                                <td>{{ $lwn->alamat }}</td>
                                                 <td>{{ $lwn->created_at }}</td>
                                                 <td>
                                                     <button type="button" class="btn btn-primary btn-sm"
@@ -235,6 +243,12 @@
                                                                                         value="{{ $lwn->gaji }}"
                                                                                         name="gaji"
                                                                                         placeholder="Range gaji per tahun">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="nama">Alamat</label>
+                                                                                    <textarea type="text" id="alamat" class="form-control" name="alamat" placeholder="...">{{ $lwn->alamat}}</textarea>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-12">
@@ -355,6 +369,12 @@
                                                     <label for="nama">Nama Lowongan</label>
                                                     <input type="text" id="nama" class="form-control"
                                                         name="nama" placeholder="Nama lowonngan">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="nama">Alamat</label>
+                                                    <textarea type="text" id="alamat" class="form-control" name="alamat" placeholder="..."></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-12">

@@ -170,305 +170,71 @@
         </section><!-- /Clients Section -->
 
         <!-- Recent Posts Section -->
-    <section id="recent-posts" class="recent-posts section">
+        <section id="recent-posts" class="recent-posts section">
 
-        <!-- Section Title -->
-        <div class="container section-title" data-aos="fade-up">
-          <h2>Untuk Kamu</h2>
-          <p>Daftar Lowongan Pekerjaan</p>
-        </div><!-- End Section Title -->
-  
-        <div class="container">
-  
-          <div class="row gy-5">
-  
-            <div class="col-xl-4 col-md-6">
-              <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="100">
-  
-                <div class="post-img position-relative overflow-hidden">
-                  <img src="assets/img/blog/blog-1.jpg" class="img-fluid" alt="">
-                  <span class="post-date">December 12</span>
+            <!-- Section Title -->
+            <div class="container section-title" data-aos="fade-up">
+                <h2>Untuk Kamu</h2>
+                <p>Daftar Lowongan Pekerjaan</p>
+            </div><!-- End Section Title -->
+
+            <div class="container">
+
+                <div class="row gy-5">
+                    @forelse ($lowongan as $lwn)
+                        <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                            <div class="post-item position-relative h-100">
+
+                                <div class="post-img position-relative overflow-hidden">
+                                    <img src="assets/img/blog/blog-3.jpg" class="img-fluid" alt="">
+                                    <span class="post-date">
+                                        @if ($lwn->jenis == 1)
+                                            Full Time
+                                        @else
+                                            Part Time
+                                        @endif
+                                    </span>
+                                </div>
+
+                                <div class="post-content d-flex flex-column">
+
+                                    <!-- Judul pekerjaan -->
+                                    <h3 class="post-title">{{ $lwn->nama }}</h3>
+
+                                    <!-- Informasi pekerjaan -->
+                                    <ul class="job-info list-unstyled">
+                                        <li><strong>Salary:</strong> {{ $lwn->gaji }}</li>
+                                        <li><strong>Category:</strong> {{ $lwn->kategori }}</li>
+                                        <li><strong>Company:</strong> {{ $lwn->perusahaan }}</li>
+                                        <li><strong>Status:</strong>
+                                            @if ($lwn->status == 1)
+                                                <span class="badge bg-primary">Tersedia</span>
+                                            @elseif ($lwn->status == 2)
+                                                <span class="badge bg-warning">Terbatas</span>
+                                            @elseif ($lwn->status == 3)
+                                                <span class="badge bg-success">Terpenuhi</span>
+                                            @endif
+                                        </li>
+                                        <li><strong>Location:</strong> {{ $lwn->alamat }}</li>
+                                    </ul>
+
+                                    <hr>
+
+                                    <!-- Link untuk membaca lebih lanjut -->
+                                    <a href="#" class="readmore stretched-link"><span>Read More</span><i
+                                            class="bi bi-arrow-right"></i></a>
+
+                                </div>
+
+                            </div>
+                        </div><!-- End post item -->
+                    @empty
+                    @endforelse
                 </div>
-  
-                <div class="post-content d-flex flex-column">
 
-                    <!-- Judul pekerjaan -->
-                    <h3 class="post-title">Frontend Developer</h3>
-              
-                    <!-- Informasi pekerjaan -->
-                    <ul class="job-info list-unstyled">
-                      <li><strong>Salary:</strong> $60,000 - $80,000 per year</li>
-                      <li><strong>Category:</strong> Information Technology</li>
-                      <li><strong>Company:</strong> Tech Solutions Inc.</li>
-                      <li><strong>Status:</strong> Full-time</li>
-                      <li><strong>Location:</strong> New York, NY</li>
-                    </ul>
-              
-                    <hr>
-              
-                    <!-- Link untuk membaca lebih lanjut -->
-                    <a href="job-details.html" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
-              
-                  </div>
-  
-              </div>
-            </div><!-- End post item -->
-  
-            <div class="col-xl-4 col-md-6">
-              <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="200">
-  
-                <div class="post-img position-relative overflow-hidden">
-                  <img src="assets/img/blog/blog-2.jpg" class="img-fluid" alt="">
-                  <span class="post-date">July 17</span>
-                </div>
-  
-                <div class="post-content d-flex flex-column">
+            </div>
 
-                    <!-- Judul pekerjaan -->
-                    <h3 class="post-title">Frontend Developer</h3>
-              
-                    <!-- Informasi pekerjaan -->
-                    <ul class="job-info list-unstyled">
-                      <li><strong>Salary:</strong> $60,000 - $80,000 per year</li>
-                      <li><strong>Category:</strong> Information Technology</li>
-                      <li><strong>Company:</strong> Tech Solutions Inc.</li>
-                      <li><strong>Status:</strong> Full-time</li>
-                      <li><strong>Location:</strong> New York, NY</li>
-                    </ul>
-              
-                    <hr>
-              
-                    <!-- Link untuk membaca lebih lanjut -->
-                    <a href="job-details.html" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
-              
-                  </div>
-  
-              </div>
-            </div><!-- End post item -->
-  
-            <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-              <div class="post-item position-relative h-100">
-  
-                <div class="post-img position-relative overflow-hidden">
-                  <img src="assets/img/blog/blog-3.jpg" class="img-fluid" alt="">
-                  <span class="post-date">September 05</span>
-                </div>
-  
-                <div class="post-content d-flex flex-column">
-
-                    <!-- Judul pekerjaan -->
-                    <h3 class="post-title">Frontend Developer</h3>
-              
-                    <!-- Informasi pekerjaan -->
-                    <ul class="job-info list-unstyled">
-                      <li><strong>Salary:</strong> $60,000 - $80,000 per year</li>
-                      <li><strong>Category:</strong> Information Technology</li>
-                      <li><strong>Company:</strong> Tech Solutions Inc.</li>
-                      <li><strong>Status:</strong> Full-time</li>
-                      <li><strong>Location:</strong> New York, NY</li>
-                    </ul>
-              
-                    <hr>
-              
-                    <!-- Link untuk membaca lebih lanjut -->
-                    <a href="#" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
-              
-                  </div>
-  
-              </div>
-            </div><!-- End post item -->
-            <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-              <div class="post-item position-relative h-100">
-  
-                <div class="post-img position-relative overflow-hidden">
-                  <img src="assets/img/blog/blog-3.jpg" class="img-fluid" alt="">
-                  <span class="post-date">September 05</span>
-                </div>
-  
-                <div class="post-content d-flex flex-column">
-
-                    <!-- Judul pekerjaan -->
-                    <h3 class="post-title">Frontend Developer</h3>
-              
-                    <!-- Informasi pekerjaan -->
-                    <ul class="job-info list-unstyled">
-                      <li><strong>Salary:</strong> $60,000 - $80,000 per year</li>
-                      <li><strong>Category:</strong> Information Technology</li>
-                      <li><strong>Company:</strong> Tech Solutions Inc.</li>
-                      <li><strong>Status:</strong> Full-time</li>
-                      <li><strong>Location:</strong> New York, NY</li>
-                    </ul>
-              
-                    <hr>
-              
-                    <!-- Link untuk membaca lebih lanjut -->
-                    <a href="#" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
-              
-                  </div>
-  
-              </div>
-            </div><!-- End post item -->
-            <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-              <div class="post-item position-relative h-100">
-  
-                <div class="post-img position-relative overflow-hidden">
-                  <img src="assets/img/blog/blog-3.jpg" class="img-fluid" alt="">
-                  <span class="post-date">September 05</span>
-                </div>
-  
-                <div class="post-content d-flex flex-column">
-
-                    <!-- Judul pekerjaan -->
-                    <h3 class="post-title">Frontend Developer</h3>
-              
-                    <!-- Informasi pekerjaan -->
-                    <ul class="job-info list-unstyled">
-                      <li><strong>Salary:</strong> $60,000 - $80,000 per year</li>
-                      <li><strong>Category:</strong> Information Technology</li>
-                      <li><strong>Company:</strong> Tech Solutions Inc.</li>
-                      <li><strong>Status:</strong> Full-time</li>
-                      <li><strong>Location:</strong> New York, NY</li>
-                    </ul>
-              
-                    <hr>
-              
-                    <!-- Link untuk membaca lebih lanjut -->
-                    <a href="#" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
-              
-                  </div>
-  
-              </div>
-            </div><!-- End post item -->
-            <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-              <div class="post-item position-relative h-100">
-  
-                <div class="post-img position-relative overflow-hidden">
-                  <img src="assets/img/blog/blog-3.jpg" class="img-fluid" alt="">
-                  <span class="post-date">September 05</span>
-                </div>
-  
-                <div class="post-content d-flex flex-column">
-
-                    <!-- Judul pekerjaan -->
-                    <h3 class="post-title">Frontend Developer</h3>
-              
-                    <!-- Informasi pekerjaan -->
-                    <ul class="job-info list-unstyled">
-                      <li><strong>Salary:</strong> $60,000 - $80,000 per year</li>
-                      <li><strong>Category:</strong> Information Technology</li>
-                      <li><strong>Company:</strong> Tech Solutions Inc.</li>
-                      <li><strong>Status:</strong> Full-time</li>
-                      <li><strong>Location:</strong> New York, NY</li>
-                    </ul>
-              
-                    <hr>
-              
-                    <!-- Link untuk membaca lebih lanjut -->
-                    <a href="#" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
-              
-                  </div>
-  
-              </div>
-            </div><!-- End post item -->
-            <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-              <div class="post-item position-relative h-100">
-  
-                <div class="post-img position-relative overflow-hidden">
-                  <img src="assets/img/blog/blog-3.jpg" class="img-fluid" alt="">
-                  <span class="post-date">September 05</span>
-                </div>
-  
-                <div class="post-content d-flex flex-column">
-
-                    <!-- Judul pekerjaan -->
-                    <h3 class="post-title">Frontend Developer</h3>
-              
-                    <!-- Informasi pekerjaan -->
-                    <ul class="job-info list-unstyled">
-                      <li><strong>Salary:</strong> $60,000 - $80,000 per year</li>
-                      <li><strong>Category:</strong> Information Technology</li>
-                      <li><strong>Company:</strong> Tech Solutions Inc.</li>
-                      <li><strong>Status:</strong> Full-time</li>
-                      <li><strong>Location:</strong> New York, NY</li>
-                    </ul>
-              
-                    <hr>
-              
-                    <!-- Link untuk membaca lebih lanjut -->
-                    <a href="#" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
-              
-                  </div>
-  
-              </div>
-            </div><!-- End post item -->
-            <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-              <div class="post-item position-relative h-100">
-  
-                <div class="post-img position-relative overflow-hidden">
-                  <img src="assets/img/blog/blog-3.jpg" class="img-fluid" alt="">
-                  <span class="post-date">September 05</span>
-                </div>
-  
-                <div class="post-content d-flex flex-column">
-
-                    <!-- Judul pekerjaan -->
-                    <h3 class="post-title">Frontend Developer</h3>
-              
-                    <!-- Informasi pekerjaan -->
-                    <ul class="job-info list-unstyled">
-                      <li><strong>Salary:</strong> $60,000 - $80,000 per year</li>
-                      <li><strong>Category:</strong> Information Technology</li>
-                      <li><strong>Company:</strong> Tech Solutions Inc.</li>
-                      <li><strong>Status:</strong> Full-time</li>
-                      <li><strong>Location:</strong> New York, NY</li>
-                    </ul>
-              
-                    <hr>
-              
-                    <!-- Link untuk membaca lebih lanjut -->
-                    <a href="#" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
-              
-                  </div>
-  
-              </div>
-            </div><!-- End post item -->
-            <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-              <div class="post-item position-relative h-100">
-  
-                <div class="post-img position-relative overflow-hidden">
-                  <img src="assets/img/blog/blog-3.jpg" class="img-fluid" alt="">
-                  <span class="post-date">September 05</span>
-                </div>
-  
-                <div class="post-content d-flex flex-column">
-
-                    <!-- Judul pekerjaan -->
-                    <h3 class="post-title">Frontend Developer</h3>
-              
-                    <!-- Informasi pekerjaan -->
-                    <ul class="job-info list-unstyled">
-                      <li><strong>Salary:</strong> $60,000 - $80,000 per year</li>
-                      <li><strong>Category:</strong> Information Technology</li>
-                      <li><strong>Company:</strong> Tech Solutions Inc.</li>
-                      <li><strong>Status:</strong> Full-time</li>
-                      <li><strong>Location:</strong> New York, NY</li>
-                    </ul>
-              
-                    <hr>
-              
-                    <!-- Link untuk membaca lebih lanjut -->
-                    <a href="#" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
-              
-                  </div>
-  
-              </div>
-            </div><!-- End post item -->
-  
-          </div>
-  
-        </div>
-  
-      </section><!-- /Recent Posts Section -->
+        </section><!-- /Recent Posts Section -->
 
         <!-- Contact Section -->
         <section id="contact" class="contact section">

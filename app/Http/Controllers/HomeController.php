@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lamaran;
 use App\Models\Lowongan;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -25,7 +27,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $userId = Auth::id();
+        $lowongan = Lowongan::all();
+        $lamaran = Lamaran::with('user', 'lowongan')->where('id_user', $userId)->get();
+        return view('user.home.index', compact('lowongan','userId','lamaran'));
     }
     public function adminHome(): View
     {

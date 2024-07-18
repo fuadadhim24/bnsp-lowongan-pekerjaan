@@ -15,6 +15,7 @@ class Lowongan extends Model
         'gaji',
         'kategori',
         'perusahaan',
+        'alamat',
         'jenis',
         'status',
     ];
